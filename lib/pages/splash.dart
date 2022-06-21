@@ -13,9 +13,18 @@ class _SplashState extends State<Splash> {
     return Scaffold(
       body: Center(
         child: Column(
-          children: const [
-            Icon(Icons.list_alt),
-            Text("TodoList"),
+          children: [
+            const Icon(Icons.list_alt),
+            const Text("TodoList"),
+            ElevatedButton(
+              onPressed: (){
+                
+              }, 
+              style: ElevatedButton.styleFrom(
+                elevation: 0,
+              ),
+              child: const Text("Start"),
+            )
           ],
         ),
       ),
