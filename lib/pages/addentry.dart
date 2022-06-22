@@ -45,6 +45,7 @@ class _AddEntryState extends State<AddEntry> {
                       const SizedBox(height: 25),
                       ElevatedButton(
                         onPressed: (){
+                          Navigator.pop(context);
                           // Need to add functionality
                           // to push data into database.
                         }, 
