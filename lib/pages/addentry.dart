@@ -1,3 +1,5 @@
+// Nhan Nguyen
+// June 21, 2022
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -21,7 +23,9 @@ class _AddEntryState extends State<AddEntry> {
           children: [
             ElevatedButton(
               onPressed: (){
-
+                // When button is submitted, put data into database
+                // and when todolist is redrawn, new card of data should
+                // be present.
               }, 
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
@@ -40,7 +44,10 @@ class _AddEntryState extends State<AddEntry> {
                       ),
                       const SizedBox(height: 25),
                       ElevatedButton(
-                        onPressed: (){}, 
+                        onPressed: (){
+                          // Need to add functionality
+                          // to push data into database.
+                        }, 
                         style: ElevatedButton.styleFrom(
                           primary: Colors.black87,
                         ),

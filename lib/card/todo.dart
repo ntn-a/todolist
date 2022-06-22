@@ -1,3 +1,5 @@
+// Nhan Nguyen
+// June 21, 2022
 import 'package:flutter/material.dart';
 
 class Todo extends StatefulWidget {
@@ -16,6 +18,9 @@ class _TodoState extends State<Todo> {
           children: const [
             SizedBox(height: 50),
             Text("TEST"),
+            // Main idea is that the text here will
+            // be replaced by data read from database.
+            // So each Todo instance will have data.
             SizedBox(height: 50),
           ],
         ),

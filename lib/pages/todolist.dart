@@ -1,3 +1,5 @@
+// Nhan Nguyen
+// June 21, 2022
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todolist/card/todo.dart';
@@ -11,7 +13,9 @@ class TodoList   extends StatefulWidget {
 
 class _TodoListState extends State<TodoList> {
   List<Todo> todo = [];
-
+  // List of Todo objects, so what'll happen is that
+  // As data is stored in the database, these cards can
+  // be generated from the Widget and can be displayed.
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class _TodoListState extends State<TodoList> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          setState(() {
+          setState(() { // Redirects to add entry.
             Navigator.pushNamed(context, "/addentry");
           });
         },
