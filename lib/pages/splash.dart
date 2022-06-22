@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
                 const SizedBox(height: 70),
                 ElevatedButton(
                   onPressed: (){
-                    
+                    Navigator.pushReplacementNamed(context, '/todolist');
                   }, 
                   style: ElevatedButton.styleFrom(
                     elevation: 0,

@@ -18,15 +18,38 @@ class _AddEntryState extends State<AddEntry> {
       ),
       body: Center(
         child: Column(
-          children: const [
-            SizedBox(
-              child: Text("TEST"),
-            ),
-            SizedBox(
-              child: Text("TEST"),
-            ),
-            SizedBox(
-              child: Text("TEST"),
+          children: [
+            ElevatedButton(
+              onPressed: (){
+
+              }, 
+              style: ElevatedButton.styleFrom(
+                primary: Colors.white,
+                elevation: 0,
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          hintText: "Enter a to-do!",
+                          focusColor: Colors.black87,
+                        ),
+                      ),
+                      const SizedBox(height: 25),
+                      ElevatedButton(
+                        onPressed: (){}, 
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.black87,
+                        ),
+                        child: const Text("Submit"),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ),
