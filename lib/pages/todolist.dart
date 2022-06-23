@@ -1,7 +1,7 @@
 // Nhan Nguyen
 // June 21, 2022
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:todolist/services/db.dart';
 import 'package:todolist/card/todo.dart';
 
 class TodoList   extends StatefulWidget {

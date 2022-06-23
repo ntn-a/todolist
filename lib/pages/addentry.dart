@@ -1,7 +1,7 @@
 // Nhan Nguyen
 // June 21, 2022
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:todolist/services/db.dart';
 
 class AddEntry extends StatefulWidget {
   const AddEntry({Key? key}) : super(key: key);
@@ -11,6 +11,8 @@ class AddEntry extends StatefulWidget {
 }
 
 class _AddEntryState extends State<AddEntry> {
+  Db db = Db();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +47,7 @@ class _AddEntryState extends State<AddEntry> {
                       const SizedBox(height: 25),
                       ElevatedButton(
                         onPressed: (){
+                          /* db.addEntry(); */
                           Navigator.pop(context);
                           // Need to add functionality
                           // to push data into database.
