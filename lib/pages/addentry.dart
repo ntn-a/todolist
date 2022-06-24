@@ -12,7 +12,6 @@ class AddEntry extends StatefulWidget {
 
 class _AddEntryState extends State<AddEntry> {
   Db db = Db();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +23,11 @@ class _AddEntryState extends State<AddEntry> {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: (){
+              onPressed: () {
                 // When button is submitted, put data into database
                 // and when todolist is redrawn, new card of data should
                 // be present.
-              }, 
+              },
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
                 elevation: 0,
@@ -46,12 +45,12 @@ class _AddEntryState extends State<AddEntry> {
                       ),
                       const SizedBox(height: 25),
                       ElevatedButton(
-                        onPressed: (){
-                          /* db.addEntry(); */
+                        onPressed: () {
+                          db.addEntry("test");
                           Navigator.pop(context);
                           // Need to add functionality
                           // to push data into database.
-                        }, 
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.black87,
                         ),
