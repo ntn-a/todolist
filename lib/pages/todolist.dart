@@ -12,12 +12,27 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
-  List<Todo> todo = [];
+  Todo t = Todo();
+  List<Widget> cards = [];
   List<Map> list = [];
   Db db = Db();
-  // List of Todo objects, so what'll happen is that
-  // As data is stored in the database, these cards can
-  // be generated from the Widget and can be displayed.
+
+  @override
+  void initState() {
+    db.openDb();
+    db.getData(list);
+    fillCards(cards, list, t);
+    super.initState();
+  }
+
+  /// List of Todo objects, so what'll happen is that
+  /// As data is stored in the database, these cards can
+  /// be generated from the Widget and can be displayed.
+  void fillCards(List<Widget> c, List<Map> m, Todo t) async {
+    for (int i = 0; i < m.asMap().length; i++) {
+      c.add(t.todoDrawCard(m.asMap()['todo'].toString()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +40,28 @@ class _TodoListState extends State<TodoList> {
       appBar: AppBar(
         title: const Text("TodoList"),
         backgroundColor: Colors.black87,
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                db.deleteDb();
+                cards.clear();
+              });
+            },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.grey,
+            ),
+            child: const Text("Clear List"),
+          )
+        ],
       ),
       body: RefreshIndicator(
-        onRefresh: () => db.getData(list),
+        onRefresh: () async {},
         child: Center(
           child: ListView(
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  db.deleteDb();
-                },
-                child: const Text("Delete DB"),
+              Column(
+                children: cards,
               ),
             ],
           ),

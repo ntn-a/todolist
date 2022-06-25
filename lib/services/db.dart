@@ -1,15 +1,14 @@
 // Nhan Nguyen
 // June 23, 2022
 import 'package:sqflite/sqflite.dart';
-import 'package:todolist/card/todo.dart';
 
 class Db {
   late Database database;
-  Db() {
-    _openDb();
-  }
 
-  void _openDb() async {
+  /// Private function that will open the database.
+  /// Finds the local path for the database and
+  /// initializes it.
+  void openDb() async {
     final dbPath = await getDatabasesPath();
     String path = "$dbPath/database.db";
     database = await openDatabase(path, version: 1,
@@ -18,23 +17,36 @@ class Db {
     });
   }
 
+  /// Takes a string parameter and inserts into the
+  /// database.
   void addEntry(String text) async {
+    openDb();
     await database.transaction((txn) async {
-      int id1 = await txn.rawInsert('INSERT INTO tab(todo) VALUES (\'$text\')');
-      print(id1);
+      await txn.rawInsert('INSERT INTO tab(todo) VALUES (\'$text\')');
     });
   }
 
+  /// Clears the entire database.
   void deleteDb() async {
+    openDb();
     final dbPath = await getDatabasesPath();
     String path = "$dbPath/database.db";
     try {
       await deleteDatabase(path);
-    } catch (e) {}
+      openDb();
+    } catch (e) {
+      throw Error(); // Not a real error, placeholder
+    }
   }
 
+  /// Queries the database and stores
+  /// data inside a map.
   Future<void> getData(List<Map> m) async {
-    m = await database.rawQuery('SELECT * FROM tab');
-    print(m);
+    openDb();
+    try {
+      m = await database.rawQuery('SELECT * FROM tab');
+    } catch (e) {
+      throw Error();
+    }
   }
 }

@@ -12,6 +12,14 @@ class AddEntry extends StatefulWidget {
 
 class _AddEntryState extends State<AddEntry> {
   Db db = Db();
+  final myController = TextEditingController();
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,11 +31,7 @@ class _AddEntryState extends State<AddEntry> {
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () {
-                // When button is submitted, put data into database
-                // and when todolist is redrawn, new card of data should
-                // be present.
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
                 elevation: 0,
@@ -38,6 +42,7 @@ class _AddEntryState extends State<AddEntry> {
                   child: Column(
                     children: [
                       TextFormField(
+                        controller: myController,
                         decoration: const InputDecoration(
                           hintText: "Enter a to-do!",
                           focusColor: Colors.black87,
@@ -46,10 +51,9 @@ class _AddEntryState extends State<AddEntry> {
                       const SizedBox(height: 25),
                       ElevatedButton(
                         onPressed: () {
-                          db.addEntry("test");
+                          db.openDb();
+                          db.addEntry(myController.text);
                           Navigator.pop(context);
-                          // Need to add functionality
-                          // to push data into database.
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.black87,
